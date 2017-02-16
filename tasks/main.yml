@@ -1,0 +1,14 @@
+---
+- include: install_debian.yml
+  when: ansible_os_family == 'Debian'
+  tags:
+    - golang
+
+- name: Creates Go Workspace directory
+  file:
+    path: "{{ golang_path }}"
+    state: directory
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+  tags:
+    - golang
